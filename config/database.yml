@@ -1,0 +1,28 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: jwt_auth_api_development
+  username: postgres
+  password: 12345
+  host: localhost
+  port: 5432
+
+test:
+  <<: *default
+  database: jwt_auth_api_test
+  username: postgres
+  password: 12345
+  host: localhost
+  port: 5432
+
+production:
+  <<: *default
+  database: jwt_auth_api_production
+  username: postgres
+  password: <%= ENV["JWT_AUTH_API_DATABASE_PASSWORD"] %>
+  host: localhost
+  port: 5432
